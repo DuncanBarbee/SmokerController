@@ -59,14 +59,14 @@ namespace UniversalSmokerApp
                     string targetTemp = items[i].Substring(items[i].IndexOf("value") + 7);
                     targetTemp = targetTemp.Remove(targetTemp.IndexOf("'"));
                     tempInput.PlaceholderText = targetTemp;
-                    int target = 0;
+                    float target = 0;
 
-                    Int32.TryParse(targetTemp, out target);
+                    float.TryParse(targetTemp, out target);
                     smokerTempData.Content = smokerTemp;
 
                     smokerTemp = smokerTemp.Remove(smokerTemp.IndexOf(' '));
-                    int tempActual = 0;
-                    Int32.TryParse(smokerTemp, out tempActual);
+                    float tempActual = 0;
+                    float.TryParse(smokerTemp, out tempActual);
 
                     if (target > tempActual + 5)
                     {
@@ -87,7 +87,7 @@ namespace UniversalSmokerApp
             }
 
             string data;
-            int temp = 0;
+            float temp = 0;
 
             probes.TryGetValue("Probe 1", out data);
             if (data == null)
@@ -97,7 +97,7 @@ namespace UniversalSmokerApp
             {
                 probe1TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
@@ -123,7 +123,7 @@ namespace UniversalSmokerApp
             {
                 probe2TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
@@ -149,7 +149,7 @@ namespace UniversalSmokerApp
             {
                 probe3TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
@@ -175,7 +175,7 @@ namespace UniversalSmokerApp
             {
                 probe4TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
@@ -201,7 +201,7 @@ namespace UniversalSmokerApp
             {
                 probe5TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
@@ -227,7 +227,7 @@ namespace UniversalSmokerApp
             {
                 probe6TempData.Content = data;
                 data = data.Remove(data.IndexOf(' '));
-                Int32.TryParse(data, out temp);
+                float.TryParse(data, out temp);
             }
             if (temp < 190)
             {
