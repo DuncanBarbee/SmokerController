@@ -25,7 +25,16 @@ namespace UniversalSmokerApp
         public MainPage()
         {
             this.InitializeComponent();
-            
+
+            Windows.Storage.ApplicationDataContainer localSettings =
+                Windows.Storage.ApplicationData.Current.LocalSettings;
+            Windows.Storage.StorageFolder localFolder =
+                Windows.Storage.ApplicationData.Current.LocalFolder;
+            if (localSettings.Values["IPAddress"]!=null)
+            {
+                IPInput.Text = localSettings.Values["IPAddress"].ToString();
+                Get_Button_Click(null, null);
+            }
         }
 
         private async void Get_Button_Click(object sender, RoutedEventArgs e)
@@ -41,6 +50,10 @@ namespace UniversalSmokerApp
                 await dialog.ShowAsync();
                 return;
             }
+
+            Windows.Storage.ApplicationDataContainer localSettings =
+                Windows.Storage.ApplicationData.Current.LocalSettings;
+            localSettings.Values["IPAddress"] = IPInput.Text;
 
             string[] items =   status.Split(new string[] { "</td></tr>" },StringSplitOptions.None);
             string smokerTemp = items[0].Substring(items[0].LastIndexOf("<td>")+4);
