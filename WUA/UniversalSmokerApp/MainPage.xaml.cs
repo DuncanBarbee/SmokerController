@@ -35,6 +35,21 @@ namespace UniversalSmokerApp
                 IPInput.Text = localSettings.Values["IPAddress"].ToString();
                 Get_Button_Click(null, null);
             }
+
+            DispatcherTimer dispatchTimer = new DispatcherTimer();
+            dispatchTimer.Interval = TimeSpan.FromSeconds(10);
+            dispatchTimer.Tick += dispatchTimer_Tick;
+            dispatchTimer.Start();
+        }
+
+        bool connected = false;
+
+        void dispatchTimer_Tick(object sender, object e)
+        {
+            if (connected)
+            {
+                Get_Button_Click(null, null);
+            }
         }
 
         private async void Get_Button_Click(object sender, RoutedEventArgs e)
@@ -48,9 +63,11 @@ namespace UniversalSmokerApp
             {
                 var dialog = new Windows.UI.Popups.MessageDialog("Invalid Smoker IP Address");
                 await dialog.ShowAsync();
+                connected = false;
                 return;
             }
 
+            connected = true;
             Windows.Storage.ApplicationDataContainer localSettings =
                 Windows.Storage.ApplicationData.Current.LocalSettings;
             localSettings.Values["IPAddress"] = IPInput.Text;
